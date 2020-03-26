@@ -15,8 +15,8 @@
     "webpack-cli": "^3.3.11"
   },
   "scripts": {
-    "start": "node ./src/main.js",
-    "local_mock": "node ./src/producer/producer.js",
+    "consumer": "node ./src/consumer.js",
+    "producer": "node ./src/producer.js",
     "build": "webpack --config webpack.config.js --progress",
     "test": "jest"
   },

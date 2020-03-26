@@ -1,10 +1,6 @@
-// import messages from '../../input.json'
-// import { Kafka } from 'kafkajs'
-// import { brokers, clientId, bookingTopicName } from '../config'
-
 const { Kafka } = require('kafkajs')
-const config = require('../config')
-const messages = require('../../input.json')
+const config = require('./config')
+const messages = require('../input.json')
 
 const client = new Kafka({
   brokers: config.kafka.BROKERS,
