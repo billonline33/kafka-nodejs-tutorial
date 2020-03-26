@@ -1,0 +1,26 @@
+{
+  "name": "kafka",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {
+    "jsonfile": "^6.0.0",
+    "kafkajs": "^1.12.0"
+  },
+  "devDependencies": {
+    "file-loader": "^5.1.0",
+    "jest": "^25.1.0",
+    "kafka-node": "^5.0.0",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11"
+  },
+  "scripts": {
+    "start": "node ./src/main.js",
+    "local_mock": "node ./src/producer/producer.js",
+    "build": "webpack --config webpack.config.js --progress",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
