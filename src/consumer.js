@@ -18,7 +18,7 @@ const run = async () => {
     eachMessage: async ({ message }) => {
       try {
         const jsonObj = JSON.parse(message.value.toString())
-        let passengerInfo = getPassengerInfo(jsonObj)
+        let passengerInfo = filterPassengerInfo(jsonObj)
         if (passengerInfo) {
           console.log(
             '******* Alert!!!!! passengerInfo *********',
@@ -32,7 +32,7 @@ const run = async () => {
   })
 }
 
-function getPassengerInfo(jsonObj) {
+function filterPassengerInfo(jsonObj) {
   let returnVal = null
 
   console.log(`eventId ${jsonObj.eventId} received!`)
@@ -73,5 +73,5 @@ signalTraps.map(type => {
 })
 
 module.exports = {
-  getPassengerInfo
+  filterPassengerInfo
 }
