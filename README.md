@@ -113,7 +113,9 @@ billhang@bills-mbp ~ %
 ```
 
 You can see two containers are running, one for zookeeper and one for kafka broker
+
 ![](screenshots/docker-container-ls.png "twon containers are up and running")
+
 Now we we move to the next step and run the appliction
 
 
@@ -126,7 +128,7 @@ Below is the folder structure:
 
 ![](screenshots/folder-structure.png "folder structure")
 
-1. config.js 
+  ### 1. config.js 
  
    It constainers all infrormation to initialise a newK afka client instance. 
    
@@ -143,7 +145,7 @@ Below is the folder structure:
    
    ```
 
-2. consumer.js
+  ### 2. consumer.js
 
   It listens to the Kafka queue, and process every message coming to the queue. 
   
@@ -183,34 +185,75 @@ Below is the folder structure:
     })
   
   ```
+    Run the command below to start consumer.
   
+  ```
+  npm run consumer
+  ```
   
+ If the producer is running (step 3 below), you will see message coming through, and I will print  message which meets  conditions (has overseas travell history and temperature is greate than or equal to 36.9)
+  
+  ![](screenshots/consumer.png "consumer")
   
 
-3. producer.js
+  ### 3. producer.js
 
 In the real senario, producer is running on different app, it contantly send message to the queue.
 
 In example, We send mock data (input.json) to simulate a real environment.
 
 
-* initialise a Kafa client and producer instance
-```javascript
-const client = new Kafka({
-  brokers: config.kafka.BROKERS,
-  clientId: config.kafka.CLIENTID
-})
+  * Initialise a Kafa client and producer instance
+  ```javascript
+  const client = new Kafka({
+    brokers: config.kafka.BROKERS,
+    clientId: config.kafka.CLIENTID
+  })
 
-const topic = config.kafka.TOPIC
+  const topic = config.kafka.TOPIC
 
-const producer = client.producer()
+  const producer = client.producer()
 
+  ```
+  
+  * I then loop through input.json file, send message every 5 second
+  
+  ```javascript
+  let i = 0
 
-```
+  const sendMessage = async (producer, topic) => {
+    await producer.connect()
 
-4. input.js
+    setInterval(function() {
+      i = i >= messages.length - 1 ? 0 : i + 1
+      payloads = {
+        topic: topic,
+        messages: [
+          { key: 'coronavirus-alert', value: JSON.stringify(messages[i]) }
+        ]
+      }
+      console.log('payloads=', payloads)
+      producer.send(payloads)
+    }, 5000)
+  }
 
-5. package.js
+  sendMessage(producer, topic)
+  ```
+  
+  Run the command below to start producer.
+  
+  ```
+  npm run producer
+  ```
+  Message is sent one by one.
+  
+  ![](screenshots/producer.png "producer")
+  
+  
+
+  ### 4. input.js
+
+  ### 5. package.js
 
 
 
