@@ -113,7 +113,9 @@ billhang@bills-mbp ~ %
 ```
 
 You can see two containers are running, one for zookeeper and one for kafka broker
+
 ![](screenshots/docker-container-ls.png "twon containers are up and running")
+
 Now we we move to the next step and run the appliction
 
 
@@ -126,7 +128,7 @@ Below is the folder structure:
 
 ![](screenshots/folder-structure.png "folder structure")
 
-1. config.js 
+  ### 4.1. config.js 
  
    It constainers all infrormation to initialise a newK afka client instance. 
    
@@ -143,7 +145,7 @@ Below is the folder structure:
    
    ```
 
-2. consumer.js
+  ### 4.2. consumer.js
 
   It listens to the Kafka queue, and process every message coming to the queue. 
   
@@ -187,30 +189,30 @@ Below is the folder structure:
   
   
 
-3. producer.js
+  ### 4.3. producer.js
 
 In the real senario, producer is running on different app, it contantly send message to the queue.
 
 In example, We send mock data (input.json) to simulate a real environment.
 
 
-* initialise a Kafa client and producer instance
-```javascript
-const client = new Kafka({
-  brokers: config.kafka.BROKERS,
-  clientId: config.kafka.CLIENTID
-})
+  * initialise a Kafa client and producer instance
+  ```javascript
+  const client = new Kafka({
+    brokers: config.kafka.BROKERS,
+    clientId: config.kafka.CLIENTID
+  })
 
-const topic = config.kafka.TOPIC
+  const topic = config.kafka.TOPIC
 
-const producer = client.producer()
+  const producer = client.producer()
 
 
-```
+  ```
 
-4. input.js
+  ### 4.4. input.js
 
-5. package.js
+  ### 4.5. package.js
 
 
 
