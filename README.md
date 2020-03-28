@@ -128,7 +128,7 @@ Below is the folder structure:
 
 ![](screenshots/folder-structure.png "folder structure")
 
-  ### 4.1. config.js 
+  ### 1. config.js 
  
    It constainers all infrormation to initialise a newK afka client instance. 
    
@@ -145,7 +145,7 @@ Below is the folder structure:
    
    ```
 
-  ### 4.2. consumer.js
+  ### 2. consumer.js
 
   It listens to the Kafka queue, and process every message coming to the queue. 
   
@@ -185,18 +185,25 @@ Below is the folder structure:
     })
   
   ```
+    Run the command below to start consumer.
   
+  ```
+  npm run consumer
+  ```
   
+ If the producer is running (step 3 below), you will see message coming through, and I will print  message which meets  conditions (has overseas travell history and temperature is greate than or equal to 36.9)
+  
+  ![](screenshots/consumer.png "consumer")
   
 
-  ### 4.3. producer.js
+  ### 3. producer.js
 
 In the real senario, producer is running on different app, it contantly send message to the queue.
 
 In example, We send mock data (input.json) to simulate a real environment.
 
 
-  * initialise a Kafa client and producer instance
+  * Initialise a Kafa client and producer instance
   ```javascript
   const client = new Kafka({
     brokers: config.kafka.BROKERS,
@@ -207,12 +214,46 @@ In example, We send mock data (input.json) to simulate a real environment.
 
   const producer = client.producer()
 
-
   ```
+  
+  * I then loop through input.json file, send message every 5 second
+  
+  ```javascript
+  let i = 0
 
-  ### 4.4. input.js
+  const sendMessage = async (producer, topic) => {
+    await producer.connect()
 
-  ### 4.5. package.js
+    setInterval(function() {
+      i = i >= messages.length - 1 ? 0 : i + 1
+      payloads = {
+        topic: topic,
+        messages: [
+          { key: 'coronavirus-alert', value: JSON.stringify(messages[i]) }
+        ]
+      }
+      console.log('payloads=', payloads)
+      producer.send(payloads)
+    }, 5000)
+  }
+
+  sendMessage(producer, topic)
+  ```
+  
+  Run the command below to start producer.
+  
+  ```
+  npm run producer
+  ```
+  Message is sent one by one.
+  
+  ![](screenshots/producer.png "producer")
+  
+  
+
+  ### 4. input.js
+
+  ### 5. package.js
 
 
 
