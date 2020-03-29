@@ -44,14 +44,14 @@ We are going to build an applicaiton, to track petential travellers who may have
 
 ## 3. Build local Kafka environemnt using Docker and Container
 
-In order to run the application locally, we need at least two docker imagers
+In order to run the application locally, we need at least two docker images
 
 * zookeeper
 * Kafka Broker
 
 In the real envirnment, you will need multiple Kafka brokers, to form a cluster.
 
-In stead of build my own docker imagers, I cloned the code from https://github.com/wurstmeister/kafka-docker, which give me everything I need to run Kafka on my local computer
+In stead of build my own docker images, I cloned the code from https://github.com/wurstmeister/kafka-docker, which give me everything I need to run Kafka on my local computer.
 
 
 
@@ -191,7 +191,7 @@ Below is the folder structure:
   npm run consumer
   ```
   
- If the producer is running (step 3 below), you will see message coming through, and I will print  message which meets  conditions (has overseas travell history and temperature is greate than or equal to 36.9)
+ If the producer is running (step 3 below), you will see message coming through, and I will print  message which meets  conditions (has overseas travel history and temperature is great than or equal to 36.9)
   
   ![](screenshots/consumer.png "consumer")
   
@@ -252,10 +252,57 @@ In example, We send mock data (input.json) to simulate a real environment.
   
 
   ### 4. input.js
+  
+  This is mock message we send to Kafka queue as producer, modify the value to see different output.
+  
+  ```json
+  
+  [
+  {
+    "eventId": "001",
+    "firstName": "Zac",
+    "lastName": "Ryan",
+    "age": 34,
+    "Gender": "M",
+    "bodyTemperature": 36.9,
+    "overseasTravelHistory": true,
+    "eventTimestamp": "2020-03-02 02:09:00"
+  },
+  {
+    "eventId": "002",
+    "firstName": "Jade",
+    "lastName": "Green",
+    "age": 23,
+    "Gender": "M",
+    "bodyTemperature": 36.8,
+    "overseasTravelHistory": false,
+    "eventTimestamp": "2020-03-02 03:09:11"
+  }
+]
+
+  ```
 
   ### 5. package.js
+  
+  run `npm run consumer` to start Kafka consumer process, and `npm run producer` to simulate Kafka producer process
+
+```javascript
+
+    "consumer": "node ./src/consumer.js",
+    "producer": "node ./src/producer.js",
+
+```
 
 
 
 ## References
 
+[Setup Kafka Zookeeper in Docker](https://www.bennettnotes.com/post/setup-kafka-zookeeper-in-docker/)
+
+[Kafka Nodejs Example with Producers and Consumers](https://www.bennettnotes.com/post/kafka-nodejs-example/)
+
+[Kafka Producer and Consumer Examples Using Java](https://dzone.com/articles/kafka-producer-and-consumer-example)
+
+[kafka docker](https://github.com/wurstmeister/kafka-docker)
+
+[Download Kafka (running Kafka locallly without using docker)](https://kafka.apache.org/downloads)
