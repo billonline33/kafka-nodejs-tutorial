@@ -12,8 +12,7 @@
 
 
 
-
-<a name="AboutKafkaStreaming"/>
+<a name="AboutKafkaStreaming"></a>
 ## 1. About Kafka Streaming
 
 Below is the discription from the official Kafka web site.
@@ -44,7 +43,7 @@ There are a few libraries for Node.js, some popular libraries include:
 I use KafkaJs in this example. The main reason is it has better documentation then the other two.
 
 
-<a name="usecase"/>
+<a name="usecase"></a>
 ## 2. Use case - track travellers who may infected by Coronarirus virus
 
 We are going to build an applicaiton, to track petential travellers who may have been infected by Coronavirus.
