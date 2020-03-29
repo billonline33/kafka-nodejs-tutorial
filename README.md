@@ -1,16 +1,12 @@
 # kafka-nodejs-tutorial
+# A sample application using Kafka, Node.js and Docker
 
 #### Table of Content
 * [1. About Kafka Streaming](#AboutKafkaStreaming)
 * [2. Use case - track travellers who may infected by Coronarirus virus](#usecase)
-* [3. Build local Kafka environemnt using Docker and Container](#Build local Kafka environemnt using Docker and Container)
-* [4. Run the application](#Run the application)
-* [References](#References)
-
-# A sample application using Kafka, Node.js and Docker
-
-
-
+* [3. Build local Kafka environemnt using Docker and Container](#build_local_kafka_environemnt)
+* [4. Run the application](#run_the_application)
+* [References](#references)
 
 <a name="AboutKafkaStreaming"></a>
 ## 1. About Kafka Streaming
@@ -53,7 +49,7 @@ We are going to build an applicaiton, to track petential travellers who may have
 3. We have another app check every message sent to the queue (near real time), and alert is triggered if we a passenger has higher temperature and has overseas travel history.
 
 
-
+<a name="build_local_kafka_environemnt"></a>
 ## 3. Build local Kafka environemnt using Docker and Container
 
 In order to run the application locally, we need at least two docker images
@@ -133,7 +129,7 @@ Now we we move to the next step and run the appliction
 
 Reference: https://github.com/wurstmeister/kafka-docker
 
-
+<a name="run_the_application"></a>
 ## 4. Run the application
 
 Below is the folder structure:
@@ -306,7 +302,7 @@ In example, We send mock data (input.json) to simulate a real environment.
 ```
 
 
-
+<a name="reference"></a>
 ## References
 
 [Setup Kafka Zookeeper in Docker](https://www.bennettnotes.com/post/setup-kafka-zookeeper-in-docker/)
