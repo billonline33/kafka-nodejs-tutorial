@@ -3,7 +3,7 @@
 
 #### Table of Content
 * [1. About Kafka Streaming](#AboutKafkaStreaming)
-* [2. Use case - track travellers who may infected by Coronarirus virus](#usecase)
+* [2. Use case - track travellers who may infected by Coronavirus](#usecase)
 * [3. Build local Kafka environemnt using Docker and Container](#build_local_kafka_environemnt)
 * [4. Run the application](#run_the_application)
 * [References](#references)
@@ -40,7 +40,7 @@ I use KafkaJs in this example. The main reason is it has better documentation th
 
 
 <a name="usecase"></a>
-## 2. Use case - track travellers who may infected by Coronarirus virus
+## 2. Use case - track travellers who may infected by Coronavirus
 
 We are going to build an applicaiton, to track petential travellers who may have been infected by Coronavirus.
 
